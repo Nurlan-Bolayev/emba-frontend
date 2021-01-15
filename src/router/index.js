@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import AdminLogin from '@/views/AdminLogin';
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,12 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
+  {
+    path: '/admin/login',
+    component: AdminLogin,
+  },
+
   {
     path: '/about',
     name: 'About',
@@ -21,7 +28,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history',
 })
 
 export default router
