@@ -1,33 +1,40 @@
 <template>
-    <v-app-bar app color="primary" dark>
-        <router-link to="/">
-            <div class="d-flex align-center">
-                <v-img
-                        alt="Vuetify Logo"
-                        class="shrink mr-2"
-                        contain
-                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-                        transition="scale-transition"
-                        width="40"
-                />
+  <v-app-bar app color="primary" dark>
+    <router-link to="/">
+      <div class="d-flex align-center">
+        <v-img
+            class="shrink mr-2"
+            contain
+            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+            transition="scale-transition"
+            width="40"
+        />
 
-               <span style="color: white !important;">
-                    Store App
-               </span>
-            </div>
-        </router-link>
+        <span style="color: white !important;">
+          Store App
+        </span>
+      </div>
+    </router-link>
 
-        <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-        <v-btn text to="/admin/login">
-            Admin Login
-        </v-btn>
-    </v-app-bar>
+    <v-btn v-if="admin" text to="/admin/dashboard">
+      Admin Dashboard
+    </v-btn>
+    <v-btn v-else text to="/admin/login">
+      Admin Login
+    </v-btn>
+  </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  computed: {
+    admin() {
+      return this.$store.state.admin
+    }
+  },
 }
 </script>
 
