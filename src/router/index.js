@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AdminLogin from '@/views/admin/AdminLogin';
 import AdminDashboard from "@/views/admin/AdminDashboard";
+import AdminCategories from "@/views/admin/AdminCategories";
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
   {
     path: '/admin/dashboard',
     component: AdminDashboard,
+  },
+
+  {
+    path: '/admin/categories',
+    component: AdminCategories,
   },
 
   {
