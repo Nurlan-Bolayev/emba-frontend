@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import AdminLogin from '@/views/admin/AdminLogin';
 import AdminDashboard from "@/views/admin/AdminDashboard";
 import AdminCategories from "@/views/admin/AdminCategories";
+import AdminProducts from "@/views/admin/AdminProducts";
+import AddProduct from "@/views/admin/AddProduct";
 
 Vue.use(VueRouter)
 
@@ -27,6 +29,16 @@ const routes = [
   {
     path: '/admin/categories',
     component: AdminCategories,
+  },
+
+  {
+    path: '/admin/products',
+    component: AdminProducts,
+  },
+
+  {
+    path: '/admin/products/new',
+    component: AddProduct,
   },
 
   {

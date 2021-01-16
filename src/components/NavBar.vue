@@ -19,7 +19,7 @@
     <v-spacer></v-spacer>
 
     <v-btn v-if="admin" text to="/admin/dashboard">
-      Admin Dashboard
+      {{ admin.name }}
     </v-btn>
     <v-btn v-else text to="/admin/login">
       Admin Login
