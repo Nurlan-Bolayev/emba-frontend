@@ -46,18 +46,20 @@ export default {
       },
       isCategoryLoading: false,
       categories: [],
-      errors : [],
+      errors: [],
     }
   },
   methods: {
     async submit() {
       this.isAdding = true;
       try {
-        await axios.post('api/admin/products/create', this.body);
-      } catch (e){
+        const res = await axios.post('api/admin/products/create', this.body);
+        this.errors = {};
+        this.$router.push(`/admin/products/${res.data.id}`);
+      } catch (e) {
         this.errors = e.response?.data?.errors || [];
-      }finally {
-       this.isAdding = false;
+      } finally {
+        this.isAdding = false;
       }
     },
   },
