@@ -1,24 +1,16 @@
-# samir-front
+# Emba App (frontend)
 
-## Project setup
-```
-npm install
-```
+---
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Requirements
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- nodejs 14 (others may work as well)
+- Prepared backend running at (http://localhost:8000)
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. Clone the project and `cd there`
+2. Run `npm install`
+3. Run `npm run serve`
+4. Open http://localhost:8080
+5. Go to admin login page
+6. Type email:`snebiyev@gmail.com` password: `samir12`

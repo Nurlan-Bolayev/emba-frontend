@@ -11,7 +11,7 @@
         />
 
         <span style="color: white !important;">
-          Store App
+          Embag App
         </span>
       </div>
     </router-link>
