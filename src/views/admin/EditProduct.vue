@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex justify-center">
-    <v-form class="ml-10 mt-13" style="width: 40%" :disabled="isFetchingProduct" @submit.prevent="editProduct">
+  <div class="d-flex justify-center ma-10">
+    <v-form style="width: 40%" :disabled="isFetchingProduct" @submit.prevent="editProduct">
       <h2 class="mb-3">Edit product</h2>
       <v-progress-linear v-if="isFetchingProduct" indeterminate class="my-2"/>
       <v-text-field v-model="body.name"
@@ -17,11 +17,11 @@
       <v-btn type="submit" color="primary" depressed :loading="isEditing">Save</v-btn>
     </v-form>
 
-    <div class="ma-5" style="width: 40%">
+    <div class="ml-7" style="width: 40%">
       <h2 class="mb-5">
         Images
       </h2>
-      <div class="d-flex flex-wrap mb-5">
+      <div v-if="body.images.length" class="d-flex flex-wrap mb-5">
         <v-card v-for="img in body.images" :key="img.id">
           <v-img aspect-ratio="1" width="200" height="200" :src="getPath(img)">
             <v-app-bar flat style="background: linear-gradient(rgba(0,0,0,0.5), transparent)">
@@ -37,6 +37,9 @@
             </v-app-bar>
           </v-img>
         </v-card>
+      </div>
+      <div class="text-center mb-5" v-else>
+        <span class="text-body-1">No images. Upload a new image below</span>
       </div>
 
       <v-form>
@@ -69,6 +72,7 @@ export default {
       body: {
         name: '',
         description: '',
+        images: [],
       },
       file: null,
       errors: {},
