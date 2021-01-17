@@ -7,6 +7,8 @@ import AdminCategories from "@/views/admin/AdminCategories";
 import AdminProducts from "@/views/admin/AdminProducts";
 import AddProduct from "@/views/admin/AddProduct";
 import EditProduct from "@/views/admin/EditProduct";
+import AddCategory from "@/views/admin/AddCategory";
+import EditCategory from "@/views/admin/EditCategory";
 
 Vue.use(VueRouter)
 
@@ -40,6 +42,16 @@ const routes = [
   {
     path: '/admin/products/new',
     component: AddProduct,
+  },
+
+  {
+    path: '/admin/categories/new',
+    component: AddCategory,
+  },
+
+  {
+    path: '/admin/categories/:id',
+    component: EditCategory,
   },
 
   {
