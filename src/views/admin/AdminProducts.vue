@@ -23,7 +23,7 @@
         class="elevation-4 mx-10 mb-5"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn icon :to="`admin/products/${item.id}`">
+        <v-btn icon :to="`/admin/products/${item.id}`">
           <v-icon>
             $edit
           </v-icon>
