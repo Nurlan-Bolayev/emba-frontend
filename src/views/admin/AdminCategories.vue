@@ -18,6 +18,8 @@
         :headers="headers"
         :items="categories"
         :loading="isLoading"
+        sort-by="updated_at"
+        sort-desc
         class="elevation-4 mx-10 mb-5"
     >
       <template v-slot:item.action="{ item }">
