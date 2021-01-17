@@ -23,11 +23,17 @@
         class="elevation-4 mx-10 mb-5"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn icon :to="`/admin/products/${item.id}`">
-          <v-icon>
-            $edit
-          </v-icon>
-        </v-btn>
+        <div class="d-flex align-center justify-space-between">
+          <v-btn class="mr-1" :to="`/admin/products/${item.id}`" color="success">
+            <v-icon left>
+              mdi-pencil
+            </v-icon>
+            Edit
+          </v-btn>
+          <v-btn :loading="productToBeDeleted === item.id" @click="deleteProduct(item.id);" color="error" depressed>
+            Delete
+          </v-btn>
+        </div>
       </template>
 
       <template v-slot:item.description="{ value }">
@@ -50,6 +56,7 @@ export default {
         {text: 'ID', value: 'id'},
         {text: 'Name', value: 'name'},
         {text: 'Description', value: 'description'},
+        {text: 'Price', value: 'price'},
         {text: 'Creator', value: 'creator.name'},
         {text: 'Category', value: 'category.name'},
         {text: 'Last-update', value: 'updated_at'},
@@ -57,14 +64,30 @@ export default {
       ],
       products: [],
       isLoading: false,
+      productToBeDeleted: null,
     }
   },
+  methods: {
+    async deleteProduct(id) {
+      if (!confirm('Are you sure?')) {
+        return
+      }
+
+      try {
+        this.productToBeDeleted = id
+        await axios.delete(`api/admin/products/${id}`);
+        this.products = this.products.filter(prod => prod.id !== id);
+      } finally {
+        this.productToBeDeleted = null
+      }
+    }
+  },
+
   async mounted() {
     this.isLoading = true
     const res = await axios.get('api/admin/products');
     this.products = res.data;
     this.isLoading = false;
   }
-
 }
 </script>
