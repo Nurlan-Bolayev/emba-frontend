@@ -6,10 +6,14 @@
       <v-text-field v-model="body.name"
                     label="Name"
                     outlined
-                    :value="body.name"
+                    :error-messages="errors.name"
+      />
+      <v-text-field v-model="body.price"
+                    placeholder="Price"
+                    outlined
+                    :error-messages="errors.price"
       />
       <v-textarea v-model="body.description"
-                  :value="body.description"
                   label="Description"
                   outlined
                   :error-messages="errors.description"
@@ -71,6 +75,7 @@ export default {
       isAddingImage: false,
       body: {
         name: '',
+        price: 0,
         description: '',
         images: [],
       },

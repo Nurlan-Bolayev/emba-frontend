@@ -24,6 +24,11 @@
                     outlined
                     :error-messages="errors.description"
         />
+        <v-text-field v-model="body.price"
+                      label="Price"
+                      outlined
+                      :error-messages="errors.price"
+        />
         <v-btn color="primary" type="submit" :loading="isAdding">
           Add Product
         </v-btn>
@@ -41,6 +46,7 @@ export default {
       isAdding: false,
       body: {
         name: '',
+        price: 0,
         description: '',
         category_id: null,
       },
