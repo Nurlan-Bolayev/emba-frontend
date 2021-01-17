@@ -2,7 +2,7 @@
   <v-card class="mx-auto" max-width="400">
     <v-card-title>
       <v-carousel
-          class="rounded"
+          class="rounded mb-3"
           height="200"
           cycle
           hide-delimiters
@@ -19,7 +19,7 @@
         <h3 class="subtitle-2 text--secondary">
           {{ product.category.name }}
         </h3>
-        <v-rating readonly small dense background-color="orange" color="orange" :value="3.5"></v-rating>
+        <v-rating readonly small dense background-color="orange" color="orange" :value="4.5"></v-rating>
       </div>
 
       <v-spacer/>
@@ -35,7 +35,7 @@
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-actions>
+    <v-card-actions v-show="false">
       <v-btn
           :to="`/products/${product.id}`"
           block
