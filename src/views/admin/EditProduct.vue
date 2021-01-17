@@ -26,17 +26,17 @@
         Images
       </h2>
       <div v-if="body.images.length" class="d-flex flex-wrap mb-5">
-        <v-card v-for="img in body.images" :key="img.id">
-          <v-img aspect-ratio="1" width="200" height="200" :src="getPath(img)">
-            <v-app-bar flat style="background: linear-gradient(rgba(0,0,0,0.5), transparent)">
-              <v-spacer></v-spacer>
+        <v-card class="ma-1" v-for="img in body.images" :key="img.id">
+          <v-img class="image" aspect-ratio="1" width="200" height="200" :src="getPath(img)">
+            <v-app-bar class="image-toolbar" :class="imagesBeingDeleted.includes(img.id) ? 'force-visible' : ''" flat>
+              <v-spacer/>
 
               <v-btn color="white" icon target="_blank" :href="getPath(img)">
                 <v-icon>mdi-open-in-new</v-icon>
               </v-btn>
 
-              <v-btn color="white" icon>
-                <v-icon @click="deleteImage(img.id)">$delete</v-icon>
+              <v-btn color="white" icon @click="deleteImage(img.id)" :loading="imagesBeingDeleted.includes(img.id)">
+                <v-icon>$delete</v-icon>
               </v-btn>
             </v-app-bar>
           </v-img>
@@ -81,6 +81,7 @@ export default {
       },
       file: null,
       errors: {},
+      imagesBeingDeleted: [],
     }
   },
 
@@ -119,6 +120,7 @@ export default {
         const res = await axios.post(`api/admin/products/${this.$route.params.id}/add-image`, formData);
         this.body.images.push(res.data)
         this.errors = {}
+        this.file = null
       } catch (e) {
         this.errors = e.response?.data?.errors || {}
       } finally {
@@ -127,10 +129,11 @@ export default {
     },
     async deleteImage(id) {
       try {
+        this.imagesBeingDeleted.push(id)
         await axios.delete(`api/admin/images/${id}`);
         this.body.images = this.body.images.filter(img => img.id !== id);
       } finally {
-        //
+        this.imagesBeingDeleted = this.imagesBeingDeleted.filter(imgId => imgId !== id)
       }
     },
 
@@ -146,5 +149,17 @@ export default {
 </script>
 
 <style scoped>
+.image-toolbar {
+  opacity: 0;
+  transition: opacity .37s;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent) !important;
+}
 
+.force-visible {
+  opacity: 1;
+}
+
+.image:hover .image-toolbar {
+  opacity: 1;
+}
 </style>
