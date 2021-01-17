@@ -55,7 +55,7 @@ export default {
         this.isLoggingIn = true
         const res = await axios.post('api/admin/login', this.credentials)
         this.$store.commit('setAdmin', res.data)
-        this.$router.replace('admin/dashboard')
+        this.$router.replace('/admin/dashboard')
 
       } catch (e) {
         this.errors = e.response?.data?.errors || {};
